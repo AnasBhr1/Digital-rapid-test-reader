@@ -1,0 +1,58 @@
+{
+  "name": "digital-rdt-reader",
+  "version": "1.0.0",
+  "description": "Digital Rapid Diagnostic Test Reader - Full Stack Application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "start": "concurrently \"npm run backend:start\" \"npm run frontend:start\"",
+    "build": "npm run backend:build && npm run frontend:build",
+    "backend:dev": "cd backend && npm run dev",
+    "backend:start": "cd backend && npm start",
+    "backend:build": "cd backend && npm run build",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:start": "cd frontend && npm run preview",
+    "frontend:build": "cd frontend && npm run build",
+    "install:all": "npm install && npm run install:backend && npm run install:frontend",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "db:setup": "cd backend && npx prisma generate && npx prisma migrate dev && npx prisma db seed",
+    "db:reset": "cd backend && npx prisma migrate reset",
+    "db:studio": "cd backend && npx prisma studio",
+    "lint": "npm run backend:lint && npm run frontend:lint",
+    "backend:lint": "cd backend && npm run lint",
+    "frontend:lint": "cd frontend && npm run lint",
+    "test": "npm run backend:test && npm run frontend:test",
+    "backend:test": "cd backend && npm test",
+    "frontend:test": "cd frontend && npm test",
+    "clean": "rm -rf node_modules backend/node_modules frontend/node_modules backend/dist frontend/dist",
+    "setup": "npm run install:all && npm run db:setup"
+  },
+  "keywords": [
+    "rdt",
+    "diagnostic",
+    "healthcare",
+    "react",
+    "nodejs",
+    "typescript",
+    "ai",
+    "image-recognition"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/digital-rdt-reader.git"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
