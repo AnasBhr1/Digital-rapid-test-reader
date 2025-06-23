@@ -309,4 +309,4 @@ For support and questions:
 
 ---
 
-Made with ❤️ for global health and well-being
+Made by Anas with ❤️ for global health and well-being
