@@ -10,23 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id          String   @id @default(cuid())
-  email       String   @unique
-  phone       String?
-  password    String
-  name        String
-  gender      Gender
-  age         Int
-  nationality String?
-  role        Role     @default(USER)
-  isVerified  Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
-  // Relations
-  tests    Test[]
-  sessions RefreshToken[]
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  password     String
+  name         String
+  role         Role          @default(USER)
+  isVerified   Boolean       @default(false)
+  
+  // Optional profile fields
+  phone        String?
+  dateOfBirth  DateTime?
+  gender       Gender?
+  age          Int?
+  nationality  String?
+  
+  // Relationships
+  tests        Test[]
+  refreshTokens RefreshToken[]
+  
+  // Timestamps
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
   @@map("users")
 }
