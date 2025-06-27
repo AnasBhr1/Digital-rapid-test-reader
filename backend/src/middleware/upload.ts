@@ -232,4 +232,5 @@ export const validateRDTImage = async (buffer: Buffer): Promise<{ isValid: boole
   }
 };
 
+// Default export for the upload middleware
 export { upload };

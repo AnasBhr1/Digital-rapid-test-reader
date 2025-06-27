@@ -4,43 +4,51 @@
     "lib": ["ES2020"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
+    "exactOptionalPropertyTypes": false,
+    "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "removeComments": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "typeRoots": ["./node_modules/@types"],
-    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/controllers/*": ["./controllers/*"],
-      "@/middleware/*": ["./middleware/*"],
-      "@/routes/*": ["./routes/*"],
-      "@/services/*": ["./services/*"],
-      "@/utils/*": ["./utils/*"],
-      "@/types/*": ["./types/*"],
-      "@/config/*": ["./config/*"]
-    }
+      "@/*": ["src/*"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ]
   },
   "include": [
     "src/**/*",
-    "prisma/seed.ts"
+    "prisma/**/*"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "ts-node": {
+    "files": true,
+    "transpileOnly": false,
+    "compilerOptions": {
+      "strictNullChecks": true,
+      "noImplicitAny": false
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { AuthenticatedRequest, ApiResponse, CreateTestData, PaginatedResponse, TestAnalysis } from '../types';
+import { AuthenticatedRequest, ApiResponse, TestAnalysis } from '../types';
 import { createError, asyncHandler } from '../middleware/errorHandler';
 import { processTestImage, validateRDTImage } from '../middleware/upload';
 import prisma from '../config/database';
@@ -191,7 +191,7 @@ export const getUserTests = asyncHandler(async (req: AuthenticatedRequest, res: 
       hasNext: page < totalPages,
       hasPrev: page > 1
     }
-  } as PaginatedResponse<typeof tests[0]>);
+  });
 });
 
 // Get test by ID

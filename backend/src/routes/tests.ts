@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { validate, schemas, validateQuery } from '../middleware/validation';
+import { validateQuery } from '../middleware/validation';
 import { authenticateUser } from '../middleware/auth';
 import { uploadTestImage } from '../middleware/upload';
 import {
@@ -11,6 +11,7 @@ import {
   updateTest,
   reanalyzeTest
 } from '../controllers/testController';
+import { schemas } from '../middleware/validation';
 
 const router = Router();
 
@@ -21,7 +22,6 @@ router.use(authenticateUser);
 router.post(
   '/',
   uploadTestImage,
-  validate(schemas.createTest),
   createTest
 );
 
@@ -35,11 +35,7 @@ router.get('/stats', getUserTestStats);
 
 router.get('/:testId', getTestById);
 
-router.put(
-  '/:testId',
-  validate(schemas.updateProfile), // Reusing update profile schema for basic fields
-  updateTest
-);
+router.put('/:testId', updateTest);
 
 router.delete('/:testId', deleteTest);
 
