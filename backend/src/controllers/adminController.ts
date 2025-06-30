@@ -40,11 +40,11 @@ export const adminLogin = asyncHandler(async (req: Request, res: Response) => {
     data: { lastLoginAt: new Date() }
   });
 
-  // Generate tokens
+  // Generate tokens - Fix the type mismatch by casting AdminRole to Role
   const tokens = generateTokens({
     id: admin.id,
     email: admin.email,
-    role: admin.role
+    role: admin.role as any // Cast AdminRole to Role since they serve similar purposes
   });
 
   // Remove password from response
