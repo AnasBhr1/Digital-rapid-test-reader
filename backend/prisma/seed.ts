@@ -64,7 +64,17 @@ async function main() {
     }
   ];
 
-  const createdUsers = [];
+  // Fix: Properly type the array
+  const createdUsers: Array<{
+    id: string;
+    email: string;
+    name: string;
+    gender: 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY' | null;
+    age: number | null;
+    phone: string | null;
+    nationality: string | null;
+  }> = [];
+
   for (const userData of sampleUsers) {
     const user = await prisma.user.upsert({
       where: { email: userData.email },
@@ -72,6 +82,15 @@ async function main() {
       create: {
         ...userData,
         isVerified: true
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        gender: true,
+        age: true,
+        phone: true,
+        nationality: true
       }
     });
     createdUsers.push(user);
